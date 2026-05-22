@@ -5,11 +5,18 @@
 ---
 
 ## 1. 大语言模型（LLM）基础
-- [[01-Transformer]]：Self-Attention、Multi-Head Attention、Position Encoding（正弦/可学习/RoPE/ALiBi）、FFN、LayerNorm/PreNorm
-- 1.2 主流模型差异：GPT 系列（Decoder-only）、BERT（Encoder-only）、T5（Encoder-Decoder）、Llama/Qwen/DeepSeek 架构特点
-- 1.3 生成策略：Greedy/Beam Search/Top-k/Top-p（Nucleus Sampling）、Temperature、Repetition Penalty
-- 1.4 长度外推：ALiBi、NTK-aware RoPE、YaRN、位置插值
-- 1.5 上下文窗口：长上下文建模挑战、滑动窗口注意力、Ring Attention
+- [[LLM-Basic/README|LLM 基础目录]]：学习顺序、面试复习地图、与其他目录的边界
+- [[LLM-Basic/00-LLM-Overview|LLM 总览]]：从 token 到 logits 的完整链路、训练与推理区别、能力边界
+- [[LLM-Basic/01-Transformer|Transformer]]：Self-Attention、Multi-Head Attention、位置编码、FFN、Norm、KV Cache
+- [[LLM-Basic/02-Tokenizer-Embedding|Tokenizer 与 Embedding]]：BPE、WordPiece、SentencePiece、特殊 token、词表与 token 成本
+- [[LLM-Basic/03-LLM-Variants|主流模型架构差异]]：GPT、BERT、T5、Llama、Qwen、DeepSeek、Dense vs MoE
+- [[LLM-Basic/04-Training-Objectives|训练目标与对齐]]：预训练、MLM、Causal LM、SFT、RLHF、DPO、数据质量
+- [[LLM-Basic/05-Generation-Strategies|生成策略]]：Greedy、Beam Search、Top-k、Top-p、Temperature、惩罚项、结构化输出
+- [[LLM-Basic/06-Context-Window-KV-Cache|上下文窗口与 KV Cache]]：prefill、decode、长上下文成本、上下文管理
+- [[LLM-Basic/07-Length-Extrapolation|长度外推]]：RoPE、ALiBi、NTK-aware、YaRN、位置插值、滑动窗口注意力
+- [[LLM-Basic/08-Inference-Optimization|推理优化]]：FlashAttention、PagedAttention、连续批处理、量化、投机解码
+- [[LLM-Basic/09-Scaling-Laws|Scaling Laws]]：参数量、数据量、算力、Chinchilla、涌现能力、模型路由
+- [[LLM-Basic/10-Model-Evaluation|模型评估]]：Perplexity、Benchmark、RAG/Agent 评估、LLM-as-a-Judge、线上监控
 
 ## 2. 提示词工程（Prompt Engineering）
 - 2.1 基础技巧：Zero-shot/Few-shot、System Prompt 设计、角色扮演、输出格式约束（JSON/XML）
