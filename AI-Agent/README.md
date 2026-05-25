@@ -19,10 +19,13 @@
 - [[LLM-Basic/10-Model-Evaluation|模型评估]]：Perplexity、Benchmark、RAG/Agent 评估、LLM-as-a-Judge、线上监控
 
 ## 2. 提示词工程（Prompt Engineering）
-- 2.1 基础技巧：Zero-shot/Few-shot、System Prompt 设计、角色扮演、输出格式约束（JSON/XML）
-- 2.2 高级推理：CoT（Chain-of-Thought）、CoT-SC（Self-Consistency）、ToT（Tree-of-Thoughts）、GoT（Graph-of-Thoughts）
-- 2.3 Agent 范式：ReAct（Reasoning + Acting）、Plan-and-Solve、Reflexion（自我反思）、LATS
-- 2.4 Prompt 安全：Prompt 注入攻击、防御策略（分隔符/指令优先级/输出过滤）、Prompt 越狱
+- [[Prompt-Engineering/README|Prompt Engineering 目录]]：学习顺序、核心主线、面试复习地图、延伸搜索清单
+- [[Prompt-Engineering/00-Prompt-Engineering-Overview|Prompt Engineering 总览]]：prompt 为什么有效、工程位置、能力边界、最小迭代闭环
+- [[Prompt-Engineering/01-Prompt-Structure-And-Instructions|Prompt 结构与指令设计]]：任务说明、角色职责、上下文分区、规则约束、输出契约
+- [[Prompt-Engineering/02-Context-Examples-And-Task-Framing|上下文、示例与任务表述]]：Zero-shot、Few-shot、示例选择、上下文组织、上下文污染
+- [[Prompt-Engineering/03-Reasoning-Decomposition-And-Planning|推理、拆解与规划]]：CoT、任务拆解、Plan-and-Solve、自检、Self-Consistency、ToT/GoT
+- [[Prompt-Engineering/04-Structured-Output-Tool-Use-And-Workflows|结构化输出、工具调用与工作流]]：JSON/Schema、Function Calling、校验重试、ReAct、Agent 工作流
+- [[Prompt-Engineering/05-Prompt-Safety-Evaluation-And-Iteration|Prompt 安全、评估与迭代]]：Prompt 注入、指令层级、权限控制、黄金集、版本管理
 
 ## 3. RAG（检索增强生成）
 - 3.1 架构链路：Indexing → Retrieval → Reranking → Generation
