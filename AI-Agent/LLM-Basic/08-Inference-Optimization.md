@@ -35,12 +35,12 @@ LLM 推理优化最容易学成“技术名词清单”：FlashAttention、Paged
 
 优化也应围绕这条链路展开：
 
-| 瓶颈 | 典型表现 | 主要原因 | 常见优化 |
-|---|---|---|---|
-| prefill 算力 | 首 token 很慢，长 prompt 更明显 | 长输入 attention 和大矩阵计算重 | FlashAttention、prompt 压缩、prefix cache、chunked prefill |
-| decode 带宽 | 后续 token 慢，TPOT 高 | 每步都要读权重和 KV Cache，且串行生成 | Continuous batching、量化、Speculative decoding |
-| KV Cache 显存 | 并发上不去，长上下文 OOM | 每层每个历史 token 都要存 K/V | GQA/MQA、PagedAttention、KV quantization |
-| 调度吞吐 | GPU 利用率波动，请求排队 | 请求长度不一，普通 batch 浪费 | continuous batching、队列策略、限流和路由 |
+| 瓶颈          | 典型表现                    | 主要原因                    | 常见优化                                                  |
+| ----------- | ----------------------- | ----------------------- | ----------------------------------------------------- |
+| prefill 算力  | 首 token 很慢，长 prompt 更明显 | 长输入 attention 和大矩阵计算重   | FlashAttention、prompt 压缩、prefix cache、chunked prefill |
+| decode 带宽   | 后续 token 慢，TPOT 高       | 每步都要读权重和 KV Cache，且串行生成 | Continuous batching、量化、Speculative decoding           |
+| KV Cache 显存 | 并发上不去，长上下文 OOM          | 每层每个历史 token 都要存 K/V    | GQA/MQA、PagedAttention、KV quantization                |
+| 调度吞吐        | GPU 利用率波动，请求排队          | 请求长度不一，普通 batch 浪费      | continuous batching、队列策略、限流和路由                        |
 
 一句话：
 
@@ -148,14 +148,14 @@ decode 阶段每一步只生成一个新 token：
 
 从这里开始，不按技术名死背，而是把每个技术放回它解决的瓶颈：
 
-| 技术 | 主要瓶颈 | 一句话边界 |
-|---|---|---|
-| FlashAttention | prefill attention IO | 优化 attention kernel，不改变数学结果 |
-| PagedAttention | KV Cache 分配 | 管理缓存内存，不是新 attention |
-| Continuous Batching | 调度吞吐 | 动态合批 decode step |
-| 量化 | 权重、激活、KV 显存和带宽 | 省显存不一定等于加速 |
-| Speculative Decoding | decode 串行 | 草稿模型先写，大模型验收 |
-| Prefix Cache | 重复 prefill | 复用相同前缀的计算结果 |
+| 技术                   | 主要瓶颈                 | 一句话边界                       |
+| -------------------- | -------------------- | --------------------------- |
+| FlashAttention       | prefill attention IO | 优化 attention kernel，不改变数学结果 |
+| PagedAttention       | KV Cache 分配          | 管理缓存内存，不是新 attention        |
+| Continuous Batching  | 调度吞吐                 | 动态合批 decode step            |
+| 量化                   | 权重、激活、KV 显存和带宽       | 省显存不一定等于加速                  |
+| Speculative Decoding | decode 串行            | 草稿模型先写，大模型验收                |
+| Prefix Cache         | 重复 prefill           | 复用相同前缀的计算结果                 |
 
 ## 4.1 FlashAttention：优化 IO，不改变 Attention 数学
 

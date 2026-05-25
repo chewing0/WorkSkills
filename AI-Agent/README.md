@@ -28,14 +28,14 @@
 - [[Prompt-Engineering/05-Prompt-Safety-Evaluation-And-Iteration|Prompt 安全、评估与迭代]]：Prompt 注入、指令层级、权限控制、黄金集、版本管理
 
 ## 3. RAG（检索增强生成）
-- 3.1 架构链路：Indexing → Retrieval → Reranking → Generation
-- 3.2 文档处理：PDF/Word 解析、文本切分策略（固定长度/语义/递归/按标题）、元数据提取
-- 3.3 Embedding 模型：OpenAI Ada、BGE、M3E、GTE、E5、ColBERT、Late Interaction
-- 3.4 向量数据库：Milvus、Pinecone、Weaviate、Chroma、Qdrant、PGVector；选型对比（性能/成本/生态）
-- 3.5 检索策略：Dense Retrieval、Sparse Retrieval（BM25）、Hybrid Search、多路召回
-- 3.6 重排序：Cross-Encoder、bge-reranker、Cohere Rerank、排序融合（RRF）
-- 3.7 幻觉治理：事实性校验、引用溯源、置信度评分、拒绝回答机制
-- 3.8 评估指标：Context Precision/Recall、Faithfulness、Answer Relevancy、RAGAS 框架
+- [[RAG/README|RAG 目录]]：学习顺序、核心主线、面试复习地图、延伸搜索清单
+- [[RAG/00-RAG-Overview|RAG 总览]]：检索增强生成的完整链路、能力边界、失败模式和工程定位
+- [[RAG/01-Document-Processing-And-Indexing|文档处理与索引构建]]：解析清洗、chunk、overlap、元数据、多索引和增量更新
+- [[RAG/02-Embeddings-And-Vector-Retrieval|Embedding 与向量检索]]：语义向量、相似度、ANN、向量数据库、embedding 模型选择
+- [[RAG/03-Hybrid-Retrieval-Reranking-And-Query-Rewriting|混合检索、重排与查询改写]]：BM25、Hybrid Search、RRF、Reranker、Multi-query、HyDE
+- [[RAG/04-Grounded-Generation-Citations-And-Hallucination-Control|基于证据生成、引用与幻觉治理]]：上下文构造、忠实性、引用准确、拒答、RAG 注入防护
+- [[RAG/05-RAG-Evaluation-And-Observability|RAG 评估与可观测性]]：检索指标、上下文指标、忠实性、引用评估、trace 和线上监控
+- [[RAG/06-Production-RAG-And-Advanced-Patterns|生产级 RAG 与进阶模式]]：权限、版本、缓存、GraphRAG、Agentic RAG、多模态和表格 RAG
 
 ## 4. 模型微调（Fine-tuning）
 - 4.1 全量微调：SFT 数据构造、指令格式（Alpaca/ShareGPT）、过拟合与灾难性遗忘
