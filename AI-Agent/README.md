@@ -38,40 +38,55 @@
 - [[RAG/06-Production-RAG-And-Advanced-Patterns|生产级 RAG 与进阶模式]]：权限、版本、缓存、GraphRAG、Agentic RAG、多模态和表格 RAG
 
 ## 4. 模型微调（Fine-tuning）
-- 4.1 全量微调：SFT 数据构造、指令格式（Alpaca/ShareGPT）、过拟合与灾难性遗忘
-- 4.2 PEFT 方法：LoRA 原理（低秩分解）、QLoRA（4-bit 量化 + 分页优化器）、Prefix Tuning、P-Tuning、Adapter
-- 4.3 对齐技术：RLHF（PPO 算法）、DPO（直接偏好优化）、KTO、ORPO
-- 4.4 训练框架：HuggingFace PEFT、DeepSpeed（ZeRO-1/2/3/Offload）、Megatron-LM、Unsloth、Llama-Factory
-- 4.5 评估：Perplexity、BLEU/ROUGE、人工评估、LLM-as-a-Judge
+- [[Fine-tuning/README|Fine-tuning 目录]]：学习顺序、核心主线、面试复习地图、延伸搜索清单
+- [[Fine-tuning/00-Fine-Tuning-Overview|Fine-tuning 总览]]：微调定位、适用边界、主要类型、完整流程、常见失败模式
+- [[Fine-tuning/01-Data-Design-And-Formatting|数据设计与格式]]：数据质量、指令格式、chat template、loss mask、数据划分、合成数据
+- [[Fine-tuning/02-SFT-And-Instruction-Tuning|SFT 与指令微调]]：监督微调目标、assistant loss、训练参数、过拟合、灾难性遗忘
+- [[Fine-tuning/03-PEFT-LoRA-QLoRA-And-Adapters|PEFT、LoRA、QLoRA 与 Adapter]]：低秩适配、关键超参、量化训练、合并部署和适用边界
+- [[Fine-tuning/04-Preference-Alignment-RLHF-DPO-And-RM|偏好对齐、RLHF、DPO 与 Reward Model]]：偏好数据、奖励模型、PPO、DPO、KTO/ORPO 和对齐风险
+- [[Fine-tuning/05-Training-Systems-And-Optimization|训练工程与优化]]：显存构成、混合精度、优化器、ZeRO/FSDP、checkpoint、稳定性排查
+- [[Fine-tuning/06-Evaluation-Deployment-And-Iteration|评估、部署与迭代]]：离线评估、回归测试、安全评估、灰度上线、监控和版本管理
 
 ## 5. Agent 核心组件
-- 5.1 规划（Planning）：任务拆解、目标分解、动态规划、回溯机制
-- 5.2 记忆（Memory）：短期记忆（Buffer/滑动窗口）、长期记忆（Vector Store）、实体记忆、摘要记忆、记忆检索与更新
-- 5.3 工具使用（Tool Use）：Function Calling 机制、Schema 设计、工具选择策略、工具调用链、错误处理与重试
-- 5.4 行动（Action）：API 调用、代码执行、文件操作、多模态输出
+- [[Agent-Corepart/README|Agent 核心组件目录]]：学习顺序、核心主线、面试复习地图、延伸搜索清单
+- [[Agent-Corepart/00-Agent-Core-Overview|Agent 核心总览]]：Agent 最小闭环、核心组件、适用边界、常见失败模式
+- [[Agent-Corepart/01-Planning-And-Task-Decomposition|规划与任务拆解]]：目标理解、任务分解、ReAct、Plan-and-Execute、重规划、停止条件
+- [[Agent-Corepart/02-Memory-And-Context-Management|记忆与上下文管理]]：短期记忆、工作状态、长期记忆、摘要、实体记忆、记忆检索
+- [[Agent-Corepart/03-Tool-Use-And-Function-Calling|工具使用与 Function Calling]]：工具选择、schema 设计、参数校验、工具结果处理、错误恢复
+- [[Agent-Corepart/04-Action-Execution-And-Sandbox|行动执行与安全边界]]：API 调用、代码执行、文件操作、权限、幂等、沙箱、审计
+- [[Agent-Corepart/05-State-Workflow-And-Human-In-The-Loop|状态、工作流与 Human-in-the-Loop]]：状态管理、checkpoint、状态机、人工确认、异步任务恢复
+- [[Agent-Corepart/06-Agent-Evaluation-Safety-And-Observability|Agent 评估、安全与可观测性]]：任务成功率、过程指标、trace、循环检测、工具安全、成本监控
 
 ## 6. Agent 开发框架
-- 6.1 LangChain：Chain、Agent、Memory、Tool、Callback、LCEL（表达式语言）
-- 6.2 LangGraph：状态图、节点/边、循环、条件分支、持久化（Persistence）、Human-in-the-Loop
-- 6.3 AutoGen：ConversableAgent、GroupChat、UserProxyAgent、代码执行环境
-- 6.4 CrewAI：Agent 角色定义、Task、Process（Sequential/Hierarchical）、工具集成
-- 6.5 其他：Dify/Coze（低代码）、MetaGPT（多 Agent 软件公司）、AutoGPT、OpenManus、Manus
-- 6.6 选型对比：何时用 LangGraph vs AutoGen vs CrewAI？各框架的优劣势与适用场景
+- [[Agent-Frame/README|Agent 开发框架目录]]：学习顺序、核心主线、面试复习地图、延伸搜索清单
+- [[Agent-Frame/00-Agent-Framework-Overview|Agent 框架总览]]：框架定位、常见类型、适用边界、选型主线
+- [[Agent-Frame/01-Framework-Abstractions-And-Design|框架通用抽象与设计]]：Model、Prompt、Chain/Runnable、Tool、Memory/State、Graph、Callback、Parser
+- [[Agent-Frame/02-LangChain-And-LCEL|LangChain 与 LCEL]]：LangChain 模块、LCEL Runnable 编排、RAG/Tool 集成、适用边界
+- [[Agent-Frame/03-LangGraph-Stateful-Agents|LangGraph 与状态图 Agent]]：StateGraph、节点/边、条件分支、循环、checkpoint、Human-in-the-loop
+- [[Agent-Frame/04-Multi-Agent-Frameworks-AutoGen-CrewAI-MetaGPT|多 Agent 框架：AutoGen、CrewAI、MetaGPT]]：多角色协作、对话协议、任务流程、协作风险
+- [[Agent-Frame/05-Low-Code-Agent-Platforms-And-Ecosystem|低代码 Agent 平台与生态]]：Dify、Coze、Flowise、平台优势、限制和适用场景
+- [[Agent-Frame/06-Framework-Selection-Engineering-And-Migration|框架选型、工程落地与迁移]]：生产能力清单、框架锁定、迁移策略、手写 workflow 取舍
 
 ## 7. 多智能体系统（Multi-Agent）
-- 7.1 协作模式：主从式（Orchestrator-Worker）、扁平协作、层级架构、议会式（Debate）
-- 7.2 通信机制：消息传递、共享记忆、黑板系统、发布订阅
-- 7.3 任务分配：静态分配 vs 动态分配、负载感知调度
-- 7.4 冲突解决：投票机制、优先级覆盖、协商协议
-- 7.5 协议：MCP（Model Context Protocol）三层架构、A2A（Agent-to-Agent）协议、Agent Card、任务状态管理
+- [[Multi-Agent/README|Multi-Agent 目录]]：学习顺序、核心主线、复习思维导图、面试地图、延伸搜索清单
+- [[Multi-Agent/00-Multi-Agent-Overview|Multi-Agent 总览]]：多智能体价值、适用边界、最小构成、失败模式和设计原则
+- [[Multi-Agent/01-Collaboration-Patterns-And-Architectures|协作模式与系统架构]]：Orchestrator-Worker、层级式、扁平协作、Debate/Critic、Blackboard、Handoff
+- [[Multi-Agent/02-Communication-Protocols-And-Shared-State|通信协议、消息与共享状态]]：消息格式、上下文边界、共享状态、发布订阅、任务状态、MCP/A2A
+- [[Multi-Agent/03-Task-Decomposition-Allocation-And-Orchestration|任务拆解、分配与调度]]：任务图、静态分配、动态路由、并行合并、预算调度、停止条件
+- [[Multi-Agent/04-Conflict-Consensus-And-Quality-Control|冲突、共识与质量控制]]：投票、Judge、Generator-Critic、证据约束、群体幻觉、质量门禁
+- [[Multi-Agent/05-Memory-Knowledge-And-Tool-Coordination|记忆、知识与工具协同]]：私有/共享记忆、多 Agent RAG、工具权限、资源锁、行动协议
+- [[Multi-Agent/06-Production-Multi-Agent-Safety-Cost-And-Evaluation|生产治理、安全、成本与评估]]：安全边界、成本延迟、trace、回归评估、渐进落地
 
 ## 8. Agent 工程化与部署
-- 8.1 推理引擎：vLLM（PagedAttention/Continuous Batching）、TGI、TensorRT-LLM、SGLang、llama.cpp
-- 8.2 部署模式：离线批处理、在线实时、流式（Streaming）、Webhook 回调
-- 8.3 状态管理：对话状态持久化、Checkpoint 与恢复、分布式会话（Redis/DB）
-- 8.4 安全隔离：Docker、gVisor、Firecracker、Wasm（WebAssembly）沙箱
-- 8.5 可观测性：LangSmith、Langfuse、Phoenix、PromptLayer；追踪思考链、工具调用、Token 消耗
-- 8.6 成本控制：模型路由（小/大模型分流）、缓存策略、Prompt 压缩、批量请求
+- [[Agent-Engineering/README|Agent Engineering 目录]]：学习顺序、核心主线、复习思维导图、面试地图、延伸搜索清单
+- [[Agent-Engineering/00-Agent-Engineering-Overview|Agent 工程化总览]]：从 demo 到生产系统需要补齐的架构、状态、安全、评估、部署和运营能力
+- [[Agent-Engineering/01-Runtime-Architecture-And-Service-Boundaries|运行时架构与服务边界]]：接入层、Agent Runtime、Model Gateway、Tool Gateway、状态服务、队列和业务系统边界
+- [[Agent-Engineering/02-Model-Serving-And-Inference-Optimization|模型服务与推理优化]]：API 模型、自托管模型、推理引擎、KV Cache、批处理、量化和模型路由
+- [[Agent-Engineering/03-Deployment-Patterns-Streaming-And-Async-Workflows|部署模式、流式响应与异步工作流]]：在线同步、Streaming、异步任务、批处理、Webhook、灰度和回滚
+- [[Agent-Engineering/04-State-Persistence-Checkpoint-And-Recovery|状态持久化、Checkpoint 与恢复]]：会话状态、任务状态、工作流状态、工具结果、长期记忆、幂等和恢复
+- [[Agent-Engineering/05-Security-Isolation-Permissions-And-Sandboxing|安全隔离、权限与沙箱]]：Prompt injection、工具权限、参数校验、代码执行沙箱、密钥管理、审批和审计
+- [[Agent-Engineering/06-Observability-Evaluation-And-Operations|可观测性、评估与运营]]：trace、日志、指标、评估集、线上监控、告警、回归测试和版本管理
+- [[Agent-Engineering/07-Cost-Latency-Scaling-And-Reliability|成本、延迟、扩缩容与可靠性]]：token 预算、缓存、模型路由、限流、重试、熔断、降级、容量规划和 SLA
 
 ## 9. Agent 面试高频场景题
 - 9.1 设计一个智能客服 Agent（带订单查询 / 退换货）

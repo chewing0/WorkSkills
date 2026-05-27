@@ -27,15 +27,15 @@ description: RAG 索引与复习地图，按知识点链接到检索增强生成
   -> 06 生产级 RAG 与进阶模式
 ```
 
-| 顺序 | 文档 | 核心问题 |
-|---:|---|---|
-| 0 | [[00-RAG-Overview|RAG 总览]] | RAG 解决什么问题，为什么它不是“向量库 + prompt”？ |
-| 1 | [[01-Document-Processing-And-Indexing|文档处理与索引构建]] | 文档如何从原始文件变成可检索、可引用、可更新的知识单元？ |
-| 2 | [[02-Embeddings-And-Vector-Retrieval|Embedding 与向量检索]] | 向量检索为什么能找语义相关内容，它的边界在哪里？ |
-| 3 | [[03-Hybrid-Retrieval-Reranking-And-Query-Rewriting|混合检索、重排与查询改写]] | 为什么只靠 dense retrieval 不够，如何提高召回和排序质量？ |
-| 4 | [[04-Grounded-Generation-Citations-And-Hallucination-Control|基于证据生成、引用与幻觉治理]] | 找到材料后，如何让模型忠实使用证据回答？ |
-| 5 | [[05-RAG-Evaluation-And-Observability|RAG 评估与可观测性]] | RAG 失败时如何定位是检索、上下文、生成还是引用的问题？ |
-| 6 | [[06-Production-RAG-And-Advanced-Patterns|生产级 RAG 与进阶模式]] | 权限、版本、缓存、GraphRAG、Agentic RAG 等如何放进工程系统？ |
+|  顺序 | 文档                                                           | 核心问题              |                                          |
+| --: | ------------------------------------------------------------ | ----------------- | ---------------------------------------- |
+|   0 | [[00-RAG-Overview                                            | RAG 总览]]          | RAG 解决什么问题，为什么它不是“向量库 + prompt”？         |
+|   1 | [[01-Document-Processing-And-Indexing                        | 文档处理与索引构建]]       | 文档如何从原始文件变成可检索、可引用、可更新的知识单元？             |
+|   2 | [[02-Embeddings-And-Vector-Retrieval                         | Embedding 与向量检索]] | 向量检索为什么能找语义相关内容，它的边界在哪里？                 |
+|   3 | [[03-Hybrid-Retrieval-Reranking-And-Query-Rewriting          | 混合检索、重排与查询改写]]    | 为什么只靠 dense retrieval 不够，如何提高召回和排序质量？    |
+|   4 | [[04-Grounded-Generation-Citations-And-Hallucination-Control | 基于证据生成、引用与幻觉治理]]  | 找到材料后，如何让模型忠实使用证据回答？                     |
+|   5 | [[05-RAG-Evaluation-And-Observability                        | RAG 评估与可观测性]]     | RAG 失败时如何定位是检索、上下文、生成还是引用的问题？            |
+|   6 | [[06-Production-RAG-And-Advanced-Patterns                    | 生产级 RAG 与进阶模式]]   | 权限、版本、缓存、GraphRAG、Agentic RAG 等如何放进工程系统？ |
 
 如果只做业务应用，优先读 `00、01、03、04、05`。如果要做知识库平台或 RAG 基础设施，再重点读 `02、06`。
 
@@ -45,15 +45,15 @@ description: RAG 索引与复习地图，按知识点链接到检索增强生成
 
 ## 2.1 先理解 RAG 的本质和边界
 
-| 知识点 | 去哪里看 | 要记住什么 |
-|---|---|---|
-| 为什么需要 RAG | [[00-RAG-Overview#1. 核心问题：为什么需要 RAG|00 - 为什么需要 RAG]] | LLM 参数知识可能过时、缺私有数据、不可溯源，RAG 用检索证据补足 |
-| 最小链路 | [[00-RAG-Overview#2. RAG 的最小链路|00 - RAG 的最小链路]] | 离线索引链路 + 在线问答链路 |
-| RAG 解决什么 | [[00-RAG-Overview#3. RAG 解决了什么|00 - RAG 解决了什么]] | 私有知识、新鲜知识、可溯源回答、低成本知识更新 |
-| RAG 没解决什么 | [[00-RAG-Overview#4. RAG 没解决什么|00 - RAG 没解决什么]] | RAG 提供证据，不提供真理；不替代数据治理、权限和工具 |
-| 失败模式 | [[00-RAG-Overview#5. RAG 的典型失败模式|00 - RAG 的典型失败模式]] | 索引失败、召回失败、排序失败、生成失败 |
-| 工程定位 | [[00-RAG-Overview#6. RAG 的工程定位|00 - RAG 的工程定位]] | RAG 找证据，Prompt 组织证据，LLM 基于证据生成 |
-| 最小可用系统 | [[00-RAG-Overview#7. 一个最小可用 RAG 系统|00 - 一个最小可用 RAG 系统]] | 入库、检索、重排、引用、日志、失败样本迭代缺一不可 |
+| 知识点       | 去哪里看                                | 要记住什么                |                                     |
+| --------- | ----------------------------------- | -------------------- | ----------------------------------- |
+| 为什么需要 RAG | [[00-RAG-Overview#1. 核心问题：为什么需要 RAG | 00 - 为什么需要 RAG]]     | LLM 参数知识可能过时、缺私有数据、不可溯源，RAG 用检索证据补足 |
+| 最小链路      | [[00-RAG-Overview#2. RAG 的最小链路      | 00 - RAG 的最小链路]]     | 离线索引链路 + 在线问答链路                     |
+| RAG 解决什么  | [[00-RAG-Overview#3. RAG 解决了什么      | 00 - RAG 解决了什么]]     | 私有知识、新鲜知识、可溯源回答、低成本知识更新             |
+| RAG 没解决什么 | [[00-RAG-Overview#4. RAG 没解决什么      | 00 - RAG 没解决什么]]     | RAG 提供证据，不提供真理；不替代数据治理、权限和工具        |
+| 失败模式      | [[00-RAG-Overview#5. RAG 的典型失败模式    | 00 - RAG 的典型失败模式]]   | 索引失败、召回失败、排序失败、生成失败                 |
+| 工程定位      | [[00-RAG-Overview#6. RAG 的工程定位      | 00 - RAG 的工程定位]]     | RAG 找证据，Prompt 组织证据，LLM 基于证据生成      |
+| 最小可用系统    | [[00-RAG-Overview#7. 一个最小可用 RAG 系统  | 00 - 一个最小可用 RAG 系统]] | 入库、检索、重排、引用、日志、失败样本迭代缺一不可           |
 
 ## 2.2 文档处理与索引构建
 
@@ -72,17 +72,17 @@ description: RAG 索引与复习地图，按知识点链接到检索增强生成
 
 ## 2.3 Embedding 与向量检索
 
-| 知识点 | 去哪里看 | 要记住什么 |
-|---|---|---|
-| Embedding 表示什么 | [[02-Embeddings-And-Vector-Retrieval#1. 核心问题：Embedding 到底表示什么|02 - Embedding 到底表示什么]] | 把文本映射到语义向量空间，相近语义距离更近 |
-| 向量相似度 | [[02-Embeddings-And-Vector-Retrieval#2. 向量相似度：如何判断接近|02 - 向量相似度]] | Cosine、Dot Product、Euclidean 都是排序方式 |
-| Dense Retrieval 优势 | [[02-Embeddings-And-Vector-Retrieval#3. Dense Retrieval 的优势|02 - Dense Retrieval 的优势]] | 擅长同义表达、模糊问法和语义泛化 |
-| Dense Retrieval 边界 | [[02-Embeddings-And-Vector-Retrieval#4. Dense Retrieval 的边界|02 - Dense Retrieval 的边界]] | 不擅长错误码、数字、版本、否定和细微条件 |
-| 向量检索流程 | [[02-Embeddings-And-Vector-Retrieval#5. 向量检索的基本流程|02 - 向量检索流程]] | query embedding 与 chunk embedding 做近邻搜索 |
-| ANN | [[02-Embeddings-And-Vector-Retrieval#6. ANN：为什么需要近似最近邻|02 - ANN]] | 用一点召回损失换速度和内存 |
-| 向量数据库 | [[02-Embeddings-And-Vector-Retrieval#7. 向量数据库到底做什么|02 - 向量数据库]] | 管索引和查询，不负责文档可信、权限语义和答案正确 |
-| Embedding 模型选择 | [[02-Embeddings-And-Vector-Retrieval#8. Embedding 模型怎么选|02 - Embedding 模型怎么选]] | 看语言、领域、维度、上下文长度、成本、部署和业务评估集 |
-| Query-Document mismatch | [[02-Embeddings-And-Vector-Retrieval#9. Query 和 Document 不一定同分布|02 - Query 和 Document 不一定同分布]] | 用户问题短且口语，文档正式且完整，需要改写、扩展或重排 |
+| 知识点                     | 去哪里看                                                            | 要记住什么                          |                                         |
+| ----------------------- | --------------------------------------------------------------- | ------------------------------ | --------------------------------------- |
+| Embedding 表示什么          | [[02-Embeddings-And-Vector-Retrieval#1. 核心问题：Embedding 到底表示什么   | 02 - Embedding 到底表示什么]]        | 把文本映射到语义向量空间，相近语义距离更近                   |
+| 向量相似度                   | [[02-Embeddings-And-Vector-Retrieval#2. 向量相似度：如何判断接近            | 02 - 向量相似度]]                   | Cosine、Dot Product、Euclidean 都是排序方式     |
+| Dense Retrieval 优势      | [[02-Embeddings-And-Vector-Retrieval#3. Dense Retrieval 的优势     | 02 - Dense Retrieval 的优势]]     | 擅长同义表达、模糊问法和语义泛化                        |
+| Dense Retrieval 边界      | [[02-Embeddings-And-Vector-Retrieval#4. Dense Retrieval 的边界]]   | 02 - Dense Retrieval 的边界]]     | 不擅长错误码、数字、版本、否定和细微条件                    |
+| 向量检索流程                  | [[02-Embeddings-And-Vector-Retrieval#5. 向量检索的基本流程]]             | 02 - 向量检索流程]]                  | query embedding 与 chunk embedding 做近邻搜索 |
+| ANN                     | [[02-Embeddings-And-Vector-Retrieval#6. ANN：为什么需要近似最近邻          | 02 - ANN]]                     | 用一点召回损失换速度和内存                           |
+| 向量数据库                   | [[02-Embeddings-And-Vector-Retrieval#7. 向量数据库到底做什么              | 02 - 向量数据库]]                   | 管索引和查询，不负责文档可信、权限语义和答案正确                |
+| Embedding 模型选择          | [[02-Embeddings-And-Vector-Retrieval#8. Embedding 模型怎么选         | 02 - Embedding 模型怎么选]]         | 看语言、领域、维度、上下文长度、成本、部署和业务评估集             |
+| Query-Document mismatch | [[02-Embeddings-And-Vector-Retrieval#9. Query 和 Document 不一定同分布 | 02 - Query 和 Document 不一定同分布]] | 用户问题短且口语，文档正式且完整，需要改写、扩展或重排             |
 
 ## 2.4 混合检索、重排与查询改写
 
