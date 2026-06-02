@@ -147,58 +147,7 @@ description: RAG 索引与复习地图，按知识点链接到检索增强生成
 
 # 3. 思维导图
 
-```mermaid
-mindmap
-  root((RAG))
-    本质
-      外部知识接入
-      检索增强生成
-      基于证据回答
-      可引用可评估
-    离线索引
-      文档解析
-      清洗去噪
-      Chunk切分
-        固定长度
-        标题段落
-        递归切分
-        语义切分
-      元数据
-      Embedding
-      多索引
-    在线检索
-      Query理解
-      Dense检索
-      BM25
-      HybridSearch
-      RRF
-      Reranker
-      QueryRewrite
-      HyDE
-    生成治理
-      上下文构造
-      GroundedPrompt
-      引用准确
-      忠实性
-      拒答机制
-      Prompt注入防护
-    评估观测
-      RecallAtK
-      ContextRecall
-      Faithfulness
-      CitationAccuracy
-      Trace
-      线上监控
-    生产进阶
-      权限控制
-      版本时效
-      缓存
-      成本延迟
-      GraphRAG
-      AgenticRAG
-      多模态RAG
-      TableSQLRAG
-```
+![RAG 复习导图](rag-mind-map.png)
 
 ---
 
@@ -324,4 +273,3 @@ mindmap
 - RAGAS / TruLens / DeepEval
 - Embedding drift
 - ANN index: HNSW / IVF / PQ
-
